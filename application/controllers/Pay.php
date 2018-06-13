@@ -102,6 +102,7 @@ class Pay extends CI_Controller
     public function callback() {
         $invoice = $this->input->post('x_invoice', true);
         $status = $this->input->post('result', true);
+	$status = $this->compareTransactionStatus($status);
         $this->dbChangeTransactionStatus($invoice, $status, true);
         $this->dbChangeCallbackStatus($invoice, $status, true);
         echo 'Please wait while we finish your transaction. If it is debug mode - please, close this window.';
